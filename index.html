@@ -35,26 +35,29 @@
             <li class="menu-item"><a href="https://soundcloud.com/goodymoog" target="_blank">SoundCloud</a><span class="chevron">›</span></li>
             <li class="menu-item"><a href="https://goodymoog.bandcamp.com/" target="_blank">Bandcamp</a><span class="chevron">›</span></li>
             <li class="menu-item"><a href="https://music.amazon.com/artists/B001HWRJEK/th%C3%A9o" target="_blank">Amazon Music</a><span class="chevron">›</span></li>
-
+            <li class="menu-item"><a href="https://tidal.com/album/445368277" target="_blank">Tidal</a><span class="chevron">›</span></li>
+            <li class="menu-item"><a href="https://www.pandora.com/artist/theo/ARj34tfvrbglZjZ" target="_blank">Pandora</a><span class="chevron">›</span></li>
+            <li class="menu-item"><a href="https://music.youtube.com/channel/UCPk-e1WfItmBjDBJ5e6xHeg" target="_blank">Youtube Music</a><span class="chevron">›</span></li>
           </ul>
         </div>
 
-        <!-- NOW PLAYING -->
-        <div id="now-playing-1" class="screen-view" data-title="Now Playing 1">
-          <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
-            <iframe width="274" height="181" src="https://www.youtube.com/embed/wZic1EBhgAI" frameborder="0" allowfullscreen></iframe>
+        <!-- NOW PLAYING (MP3 MUSIC PAGE) -->
+        <div id="now-playing-1" class="screen-view" data-title="Music">
+          <ul class="menu-list" id="track-list">
+            <!-- JS will inject tracks here -->
+          </ul>
+
+          <div style="padding:10px 12px;">
+            <div id="track-now" style="font-size:12px; opacity:.7; margin-bottom:6px;">
+              Select a song
+            </div>
+            <audio id="audio" preload="metadata"></audio>
           </div>
         </div>
-        <div id="now-playing-2" class="screen-view" data-title="Now Playing 2">
-          <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
-            <iframe width="274" height="181" src="https://www.youtube.com/embed/Mfn7tXtdr2I" frameborder="0" allowfullscreen></iframe>
-          </div>
-        </div>
-        <div id="now-playing-3" class="screen-view" data-title="Now Playing 3">
-          <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
-            <iframe width="274" height="181" src="https://www.youtube.com/embed/IR_vX_YuTvg" frameborder="0" allowfullscreen></iframe>
-          </div>
-        </div>
+
+        <!-- keep these ids so existing navigation (nowPlayingViews) doesn't break -->
+        <div id="now-playing-2" class="screen-view" data-title="Now Playing"></div>
+        <div id="now-playing-3" class="screen-view" data-title="Now Playing"></div>
 
         <!-- ALBUM 1 (STATIC + Apple Metadata) -->
         <div id="album-1" class="screen-view" data-title="Album: Sickwiththeflow" data-album-url="https://music.apple.com/us/album/sickwiththeflow/1824339230" style="cursor:pointer;">

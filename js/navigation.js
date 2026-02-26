@@ -12,10 +12,12 @@ export function createNavigation() {
     const currentEl = document.getElementById(currentViewId);
     const nextEl = document.getElementById(targetId);
     if (!nextEl) return;
-    // If leaving secret, let secret module reset itself via event
+
     currentEl?.classList.remove('active');
     nextEl.classList.add('active');
-    document.getElementById('title').textContent = nextEl.getAttribute('data-title') || 'Goodymoog Player';
+    document.getElementById('title').textContent =
+      nextEl.getAttribute('data-title') || 'Goodymoog Player';
+
     currentViewId = targetId;
     document.dispatchEvent(new CustomEvent('viewchange', { detail: { id: currentViewId } }));
   }
@@ -41,8 +43,12 @@ export function createNavigation() {
     setActiveView,
     showPublicByIndex,
     showNowPlayingByIndex,
-    next: () => isNowPlaying() ? showNowPlayingByIndex(currentNowPlayingIndex + 1) : showPublicByIndex(currentPublicIndex + 1),
-    prev: () => isNowPlaying() ? showNowPlayingByIndex(currentNowPlayingIndex - 1) : showPublicByIndex(currentPublicIndex - 1),
+    next: () => isNowPlaying()
+      ? showNowPlayingByIndex(currentNowPlayingIndex + 1)
+      : showPublicByIndex(currentPublicIndex + 1),
+    prev: () => isNowPlaying()
+      ? showNowPlayingByIndex(currentNowPlayingIndex - 1)
+      : showPublicByIndex(currentPublicIndex - 1),
     resetToMenu: () => { currentPublicIndex = 0; setActiveView('main-menu'); }
   };
 }
