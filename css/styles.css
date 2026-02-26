@@ -5,24 +5,30 @@ html, body {
   height: 100%;
 }
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+}
+
 body{
   background: none;
   margin: 0;
-
-  /* ✅ fix mobile jumpy scroll (address bar resizing) */
   min-height: 100svh;
   min-height: 100dvh;
-
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding-top: 60px;
 }
-.player-center {
+/* .player-center {
   display: flex;
   justify-content: center;
-  padding: 60px 0; /* space from top */
-}
+  padding: 60px 0; space from top
+} */
 .ipod { width:320px; height:550px; border-radius:50px; background:linear-gradient(to bottom right, rgba(255,255,255,.85), rgba(220,220,220,.85)); box-shadow:0 15px 40px rgba(0,0,0,.35), inset 0 2px 4px rgba(255,255,255,.5), inset 0 -2px 4px rgba(0,0,0,.1); backdrop-filter: blur(10px); display:flex; flex-direction:column; align-items:center; overflow:hidden; position:relative; }
 .engraving { position:absolute; bottom:15px; font-size:10px; opacity:.3; letter-spacing:1px; }
 
@@ -81,4 +87,12 @@ body{
 .secret-splash { display:flex; align-items:center; justify-content:center; height:100%; flex-direction:column; gap:8px; }
 .secret-content { display:none; height:100%; align-items:center; justify-content:center; }
 
+
 @media (max-width:400px){ .ipod{ transform:scale(.85); } }
+
+@media (max-width: 480px){
+  body{
+    padding-top: 20px; /* was 60px — adjust to taste */
+  }
+}
+
