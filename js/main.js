@@ -72,6 +72,31 @@ const hitRW = document.querySelector('.hit-rw');
 const hitFW = document.querySelector('.hit-fw');
 const hitPlay = document.querySelector('.hit-play');
 
+// ===== iPod-style quadrant press FX (80ms linger) =====
+const wheelEl = document.querySelector('.clickwheel');
+
+function pressWheel(quadrantClass) {
+  if (!wheelEl) return;
+
+  // Clear any previous state
+  wheelEl.classList.remove('press-menu', 'press-play', 'press-rw', 'press-fw', 'press-on');
+
+  // Apply new state
+  wheelEl.classList.add('press-on', quadrantClass);
+
+  // Linger ~80ms after touch
+  window.clearTimeout(pressWheel._t);
+  pressWheel._t = window.setTimeout(() => {
+    wheelEl.classList.remove('press-on', quadrantClass);
+  }, 120); // 120ms feels like ~80ms linger on real taps
+}
+
+// Trigger on pointerdown so it responds instantly on mobile
+hitMenu?.addEventListener('pointerdown', () => pressWheel('press-menu'));
+hitPlay?.addEventListener('pointerdown', () => pressWheel('press-play'));
+hitRW?.addEventListener('pointerdown', () => pressWheel('press-rw'));
+hitFW?.addEventListener('pointerdown', () => pressWheel('press-fw'));
+
 btnMenu.addEventListener('click', () => {
   secret.registerButton('menu');
   nav.resetToMenu();

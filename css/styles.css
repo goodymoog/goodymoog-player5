@@ -130,3 +130,99 @@ body{
     padding-top: 20px;
   }
 }
+
+/* ===== iPod-style quadrant press (tilting plate + 80ms linger) ===== */
+
+/* Remove the ugly mobile tap highlight / box flash */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* The wheel is our stage for the pressed overlay */
+.clickwheel{
+  position: relative;
+  overflow: hidden; /* keep overlay clean inside circle */
+}
+
+/* One overlay that covers the wheel (but never blocks clicks) */
+.clickwheel::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  pointer-events:none;
+  opacity:0;
+  transform: translateY(0) scale(1);
+  transition: opacity 80ms ease-out, transform 120ms ease-out;
+
+  /* Ring-only mask: keeps center clean like a real clickwheel */
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 33%, #000 34% 100%);
+          mask: radial-gradient(circle at 50% 50%, transparent 0 33%, #000 34% 100%);
+
+  /* default (gets overridden by quadrant classes) */
+  background: transparent;
+}
+
+/* When a press is active (JS toggles this class briefly) */
+.clickwheel.press-on::before{
+  opacity: 1;
+  transform: translateY(0.5px) scale(0.998);
+  animation: wheelPressPop 140ms ease-out both; /* linger feel */
+}
+
+/* Quadrant shading: subtle highlight + shadow = "tilting plate" */
+.clickwheel.press-menu::before{
+  background:
+    /* bright edge (top) */
+    radial-gradient(120px 90px at 50% 18%, rgba(255,255,255,0.65), transparent 60%),
+    /* darker edge (opposite) */
+    radial-gradient(140px 110px at 50% 75%, rgba(0,0,0,0.10), transparent 70%),
+    /* wedge selector */
+    conic-gradient(from -90deg,
+      rgba(0,0,0,0.16) 320deg 40deg,
+      transparent 40deg 320deg
+    );
+}
+
+.clickwheel.press-play::before{
+  background:
+    radial-gradient(120px 90px at 50% 82%, rgba(255,255,255,0.60), transparent 60%),
+    radial-gradient(140px 110px at 50% 25%, rgba(0,0,0,0.10), transparent 70%),
+    conic-gradient(from 90deg,
+      rgba(0,0,0,0.16) 320deg 40deg,
+      transparent 40deg 320deg
+    );
+}
+
+.clickwheel.press-rw::before{
+  background:
+    radial-gradient(120px 90px at 18% 50%, rgba(255,255,255,0.60), transparent 60%),
+    radial-gradient(140px 110px at 78% 50%, rgba(0,0,0,0.10), transparent 70%),
+    conic-gradient(from 180deg,
+      rgba(0,0,0,0.16) 320deg 40deg,
+      transparent 40deg 320deg
+    );
+}
+
+.clickwheel.press-fw::before{
+  background:
+    radial-gradient(120px 90px at 82% 50%, rgba(255,255,255,0.60), transparent 60%),
+    radial-gradient(140px 110px at 22% 50%, rgba(0,0,0,0.10), transparent 70%),
+    conic-gradient(from 0deg,
+      rgba(0,0,0,0.16) 320deg 40deg,
+      transparent 40deg 320deg
+    );
+}
+
+/* micro "pop" so it feels tactile */
+@keyframes wheelPressPop{
+  0%   { filter: brightness(1); }
+  45%  { filter: brightness(0.98); }
+  100% { filter: brightness(1); }
+}
+
+/* Optional: center button press feels like a click */
+.center-btn:active{
+  transform: translate(-50%, -50%) scale(0.985);
+  box-shadow:
+    inset 0 10px 16px rgba(0,0,0,0.18),
+    inset 0 -6px 10px rgba(255,255,255,0.55);
+}
