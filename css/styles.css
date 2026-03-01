@@ -24,11 +24,7 @@ body{
   align-items: flex-start;
   padding-top: 60px;
 }
-/* .player-center {
-  display: flex;
-  justify-content: center;
-  padding: 60px 0; space from top
-} */
+
 .ipod { width:320px; height:550px; border-radius:50px; background:linear-gradient(to bottom right, rgba(255,255,255,.85), rgba(220,220,220,.85)); box-shadow:0 15px 40px rgba(0,0,0,.35), inset 0 2px 4px rgba(255,255,255,.5), inset 0 -2px 4px rgba(0,0,0,.1); backdrop-filter: blur(10px); display:flex; flex-direction:column; align-items:center; overflow:hidden; position:relative; }
 .engraving { position:absolute; bottom:15px; font-size:10px; opacity:.3; letter-spacing:1px; }
 
@@ -57,59 +53,58 @@ body{
 .chevron { font-weight:bold; }
 
 .clickwheel { margin-top:40px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle at 40% 40%,#f8f8f8,#d0d0d0); box-shadow: inset 0 6px 8px rgba(0,0,0,.1), inset 0 -4px 6px rgba(255,255,255,.4); position:relative; z-index:2; }
+
 .center-btn { width:70px; height:70px; background:linear-gradient(to bottom,#e6e6e6,#cfcfcf); border-radius:50%; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); box-shadow: inset 0 2px 3px rgba(255,255,255,.5), inset 0 -2px 4px rgba(0,0,0,.1); cursor:pointer; z-index:5; }
 
-/* Labels: keep visual only, don't steal clicks */
-.btn-label { position:absolute; font-size:10px; color:#333; font-weight:bold; cursor:pointer; user-select:none; padding:10px; background:transparent; z-index:4; pointer-events: none; }
+.btn-label { position:absolute; font-size:10px; color:#333; font-weight:bold; cursor:pointer; user-select:none; padding:10px; background:transparent; z-index:4; }
 .btn-label.menu { top:10px; left:50%; transform:translateX(-50%); }
 .btn-label.rw { top:50%; left:10px; transform:translateY(-50%); }
 .btn-label.fw { top:50%; right:10px; transform:translateY(-50%); }
 .btn-label.play { bottom:10px; left:50%; transform:translateX(-50%); }
 
 /* =========================
-   HIT ZONES (FIXED: NO OVERLAP)
+   HIT ZONES (FIXED)
+   - NO OVERLAP
+   - SIDE ZONES BIG (so RW/FW always work)
    ========================= */
 .wheel-hit {
-  position: absolute;
-  inset: 0;
-  background: transparent;
-  cursor: pointer;
-  z-index: 3;
-  pointer-events: auto;
+  position:absolute;
+  inset:0;
+  background:transparent;
+  cursor:pointer;
+  z-index:3;
 }
 
-/* Make each zone a small rectangle inside its quadrant */
-
-/* TOP (MENU) */
+/* MENU: top-center */
 .hit-menu {
-  left: 25%;
-  top: 4%;
-  width: 50%;
-  height: 18%;
+  left: 22%;
+  top: 0%;
+  width: 56%;
+  height: 26%;
 }
 
-/* BOTTOM (PLAY/PAUSE) — was taking bottom 45% */
+/* PLAY/PAUSE: bottom-center (small, prevents overlap) */
 .hit-play {
-  left: 35%;
-  bottom: 4%;
-  width: 30%;
-  height: 18%;
+  left: 34%;
+  bottom: 0%;
+  width: 32%;
+  height: 24%;
 }
 
-/* LEFT (RW) */
+/* RW: left side (big + avoids top/bottom zones) */
 .hit-rw {
-  left: 4%;
-  top: 35%;
-  width: 22%;
-  height: 30%;
+  left: 0%;
+  top: 26%;
+  width: 32%;
+  height: 48%;
 }
 
-/* RIGHT (FW) */
+/* FW: right side (big + avoids top/bottom zones) */
 .hit-fw {
-  right: 4%;
-  top: 35%;
-  width: 22%;
-  height: 30%;
+  right: 0%;
+  top: 26%;
+  width: 32%;
+  height: 48%;
 }
 
 /* Albums */
@@ -132,6 +127,6 @@ body{
 
 @media (max-width: 480px){
   body{
-    padding-top: 20px; /* was 60px — adjust to taste */
+    padding-top: 20px;
   }
 }

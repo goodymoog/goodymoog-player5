@@ -35,6 +35,11 @@ function openSelectedMenuLink() {
   if (link) window.open(link.href, '_blank');
 }
 
+// Prevent global keyboard shortcuts while typing in form fields
+function isEditableTarget(t) {
+  return t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
+}
+
 // Keyboard navigation for MAIN MENU only
 document.addEventListener('keydown', (e) => {
   if (isEditableTarget(e.target)) return;
@@ -136,19 +141,20 @@ if (trackList) {
 // initial render
 renderTrackList();
 
+/**
+ * ✅ FIX: Play/Pause ALWAYS goes to music (now-playing-1), not menu.
+ * Then toggles audio.
+ */
 btnPlay.addEventListener('click', () => {
-  const unlocked = secret.registerButton('play');
+  secret.registerButton('play');
 
-  // If on MP3 music page, Play/Pause toggles audio
-  if (nav.currentViewId === 'now-playing-1') {
-    toggleAudio();
-    return;
+  // Always show the music page when Play/Pause is pressed
+  if (nav.currentViewId !== 'now-playing-1') {
+    nav.setActiveView('now-playing-1');
   }
 
-  // Otherwise keep old behavior: go to now-playing-1 (unless secret unlocked)
-  if (!unlocked) {
-    nav.setActiveView(nav.currentViewId.startsWith('now-playing') ? nav.currentViewId : 'now-playing-1');
-  }
+  // Then toggle audio
+  toggleAudio();
 });
 
 btnFW.addEventListener('click', () => {
@@ -209,11 +215,11 @@ btnCenter.addEventListener('click', () => {
   }
 });
 
-// Hit areas
-hitMenu.addEventListener('click', () => btnMenu.click());
-hitRW.addEventListener('click', () => btnRW.click());
-hitFW.addEventListener('click', () => btnFW.click());
-hitPlay.addEventListener('click', () => btnPlay.click());
+// Hit areas (add preventDefault so taps feel consistent on mobile)
+hitMenu.addEventListener('click', (e) => { e.preventDefault(); btnMenu.click(); });
+hitRW.addEventListener('click', (e) => { e.preventDefault(); btnRW.click(); });
+hitFW.addEventListener('click', (e) => { e.preventDefault(); btnFW.click(); });
+hitPlay.addEventListener('click', (e) => { e.preventDefault(); btnPlay.click(); });
 
 // Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
@@ -234,11 +240,6 @@ document.addEventListener('keydown', (e) => {
     btnPlay.click();
   }
 });
-
-// Prevent global keyboard shortcuts while typing in form fields
-function isEditableTarget(t) {
-  return t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
-}
 
 // Init feature modules
 initAlbums();
