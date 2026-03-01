@@ -87,16 +87,21 @@ function applyPress(cls) {
 }
 
 // Trigger from hitboxes (mobile)
-hitMenu?.addEventListener('pointerdown', () => applyPress('press-menu'));
-hitPlay?.addEventListener('pointerdown', () => applyPress('press-play'));
-hitRW?.addEventListener('pointerdown', () => applyPress('press-rw'));
-hitFW?.addEventListener('pointerdown', () => applyPress('press-fw'));
+function bindPress(el, cls) {
+  if (!el) return;
+  el.addEventListener('pointerdown', () => applyPress(cls));
+  el.addEventListener('click', () => applyPress(cls)); // fallback for browsers that delay pointer events
+}
 
-// ALSO trigger from visible labels/icons (desktop + mobile)
-btnMenu?.addEventListener('pointerdown', () => applyPress('press-menu'));
-btnPlay?.addEventListener('pointerdown', () => applyPress('press-play'));
-btnRW?.addEventListener('pointerdown', () => applyPress('press-rw'));
-btnFW?.addEventListener('pointerdown', () => applyPress('press-fw'));
+bindPress(hitMenu, 'press-menu');
+bindPress(hitPlay, 'press-play');
+bindPress(hitRW, 'press-rw');
+bindPress(hitFW, 'press-fw');
+
+bindPress(btnMenu, 'press-menu');
+bindPress(btnPlay, 'press-play');
+bindPress(btnRW, 'press-rw');
+bindPress(btnFW, 'press-fw');
 
 btnMenu.addEventListener('click', () => {
   secret.registerButton('menu');
@@ -242,10 +247,10 @@ btnCenter.addEventListener('click', () => {
 });
 
 // Hit areas (add preventDefault so taps feel consistent on mobile)
-hitMenu.addEventListener('click', (e) => { e.preventDefault(); btnMenu.click(); });
-hitRW.addEventListener('click', (e) => { e.preventDefault(); btnRW.click(); });
-hitFW.addEventListener('click', (e) => { e.preventDefault(); btnFW.click(); });
-hitPlay.addEventListener('click', (e) => { e.preventDefault(); btnPlay.click(); });
+hitMenu?.addEventListener('click', (e) => { e.preventDefault(); btnMenu.click(); });
+hitRW?.addEventListener('click', (e) => { e.preventDefault(); btnRW.click(); });
+hitFW?.addEventListener('click', (e) => { e.preventDefault(); btnFW.click(); });
+hitPlay?.addEventListener('click', (e) => { e.preventDefault(); btnPlay.click(); });
 
 // Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
