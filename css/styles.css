@@ -169,42 +169,46 @@ body{
   opacity: 1;
 }
 
-/* TOP (MENU) — rim shadow only */
+/* TOP (MENU) — rim shadow only (clipped to top half) */
 .clickwheel.press-menu::after{
+  clip-path: inset(0 0 50% 0); /* only top half */
   background:
     radial-gradient(circle at 50% 8%,
-      rgba(0,0,0,0.20) 0%,
-      rgba(0,0,0,0.14) 25%,
-      transparent 60%
+      rgba(0,0,0,0.18) 0%,
+      rgba(0,0,0,0.12) 28%,
+      transparent 65%
     );
 }
 
-/* BOTTOM (PLAY) — rim shadow only */
+/* BOTTOM (PLAY) — rim shadow only (clipped to bottom half) */
 .clickwheel.press-play::after{
+  clip-path: inset(50% 0 0 0); /* only bottom half */
   background:
     radial-gradient(circle at 50% 92%,
-      rgba(0,0,0,0.20) 0%,
-      rgba(0,0,0,0.14) 25%,
-      transparent 60%
+      rgba(0,0,0,0.18) 0%,
+      rgba(0,0,0,0.12) 28%,
+      transparent 65%
     );
 }
 
-/* LEFT (RW) — rim shadow only */
+/* LEFT (RW) — rim shadow only (clipped to left half) */
 .clickwheel.press-rw::after{
+  clip-path: inset(0 50% 0 0); /* only left half */
   background:
     radial-gradient(circle at 8% 50%,
-      rgba(0,0,0,0.20) 0%,
-      rgba(0,0,0,0.14) 25%,
-      transparent 60%
+      rgba(0,0,0,0.18) 0%,
+      rgba(0,0,0,0.12) 28%,
+      transparent 65%
     );
 }
 
-/* RIGHT (FW) — rim shadow only */
+/* RIGHT (FW) — rim shadow only (clipped to right half) */
 .clickwheel.press-fw::after{
+  clip-path: inset(0 0 0 50%); /* only right half */
   background:
     radial-gradient(circle at 92% 50%,
-      rgba(0,0,0,0.20) 0%,
-      rgba(0,0,0,0.14) 25%,
-      transparent 60%
+      rgba(0,0,0,0.18) 0%,
+      rgba(0,0,0,0.12) 28%,
+      transparent 65%
     );
 }
