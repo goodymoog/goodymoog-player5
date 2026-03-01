@@ -169,62 +169,35 @@ body{
   opacity: 1;
 }
 
-/* TOP (MENU) — tilt: shadow top + tiny highlight bottom */
-.clickwheel.press-menu::after{
-  clip-path: inset(0 0 50% 0);
-  background:
-    radial-gradient(circle at 50% 6%,
-      rgba(0,0,0,0.18) 0%,
-      rgba(0,0,0,0.10) 35%,
-      transparent 70%
-    ),
-    radial-gradient(circle at 50% 96%,
-      rgba(255,255,255,0.18) 0%,
-      transparent 55%
-    );
+/* Base wheel transition */
+.clickwheel{
+  transition: box-shadow 80ms ease, filter 80ms ease;
 }
 
-/* BOTTOM (PLAY) — tilt: shadow bottom + tiny highlight top */
-.clickwheel.press-play::after{
-  clip-path: inset(50% 0 0 0);
-  background:
-    radial-gradient(circle at 50% 94%,
-      rgba(0,0,0,0.18) 0%,
-      rgba(0,0,0,0.10) 35%,
-      transparent 70%
-    ),
-    radial-gradient(circle at 50% 4%,
-      rgba(255,255,255,0.18) 0%,
-      transparent 55%
-    );
+/* MENU (top press) */
+.clickwheel.press-menu{
+  box-shadow:
+    inset 0 8px 10px rgba(0,0,0,0.10),
+    inset 0 -3px 5px rgba(255,255,255,0.35);
 }
 
-/* LEFT (RW) — tilt: shadow left + tiny highlight right */
-.clickwheel.press-rw::after{
-  clip-path: inset(0 50% 0 0);
-  background:
-    radial-gradient(circle at 6% 50%,
-      rgba(0,0,0,0.18) 0%,
-      rgba(0,0,0,0.10) 35%,
-      transparent 70%
-    ),
-    radial-gradient(circle at 96% 50%,
-      rgba(255,255,255,0.18) 0%,
-      transparent 55%
-    );
+/* PLAY (bottom press) */
+.clickwheel.press-play{
+  box-shadow:
+    inset 0 -8px 10px rgba(0,0,0,0.10),
+    inset 0 3px 5px rgba(255,255,255,0.35);
 }
 
-/* RIGHT (FW) — tilt: shadow right + tiny highlight left */
-.clickwheel.press-fw::after{
-  clip-path: inset(0 0 0 50%);
-  background:
-    radial-gradient(circle at 94% 50%,
-      rgba(0,0,0,0.18) 0%,
-      rgba(0,0,0,0.10) 35%,
-      transparent 70%
-    ),
-    radial-gradient(circle at 4% 50%,
-      rgba(255,255,255,0.18) 0%,
-      transparent 55%
-    );
+/* LEFT */
+.clickwheel.press-rw{
+  box-shadow:
+    inset 8px 0 10px rgba(0,0,0,0.10),
+    inset -3px 0 5px rgba(255,255,255,0.35);
 }
+
+/* RIGHT */
+.clickwheel.press-fw{
+  box-shadow:
+    inset -8px 0 10px rgba(0,0,0,0.10),
+    inset 3px 0 5px rgba(255,255,255,0.35);
+} 
