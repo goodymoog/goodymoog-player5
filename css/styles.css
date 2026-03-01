@@ -52,7 +52,25 @@ body{
 .menu-item a { color:inherit; text-decoration:none; flex:1; }
 .chevron { font-weight:bold; }
 
-.clickwheel { margin-top:40px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle at 40% 40%,#f8f8f8,#d0d0d0); box-shadow: inset 0 6px 8px rgba(0,0,0,.1), inset 0 -4px 6px rgba(255,255,255,.4); position:relative; z-index:2; }
+.clickwheel{
+  margin-top:40px;
+  width:200px;
+  height:200px;
+  border-radius:50%;
+  position:relative;
+  z-index:2;
+  overflow:hidden;
+
+  background: radial-gradient(circle at 40% 40%, #f8f8f8, #d0d0d0);
+
+  /* base shading stays ALWAYS */
+  box-shadow:
+    inset 0 6px 8px rgba(0,0,0,.10),
+    inset 0 -4px 6px rgba(255,255,255,.40),
+    var(--press-shadow, 0 0 0 rgba(0,0,0,0));
+
+  transition: box-shadow 80ms ease;
+}
 
 .center-btn { width:70px; height:70px; background:linear-gradient(to bottom,#e6e6e6,#cfcfcf); border-radius:50%; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); box-shadow: inset 0 2px 3px rgba(255,255,255,.5), inset 0 -2px 4px rgba(0,0,0,.1); cursor:pointer; z-index:5; }
 
@@ -169,35 +187,8 @@ body{
   opacity: 1;
 }
 
-/* Base wheel transition */
-.clickwheel{
-  transition: box-shadow 80ms ease, filter 80ms ease;
-}
-
-/* MENU (top press) */
-.clickwheel.press-menu{
-  box-shadow:
-    inset 0 8px 10px rgba(0,0,0,0.10),
-    inset 0 -3px 5px rgba(255,255,255,0.35);
-}
-
-/* PLAY (bottom press) */
-.clickwheel.press-play{
-  box-shadow:
-    inset 0 -8px 10px rgba(0,0,0,0.10),
-    inset 0 3px 5px rgba(255,255,255,0.35);
-}
-
-/* LEFT */
-.clickwheel.press-rw{
-  box-shadow:
-    inset 8px 0 10px rgba(0,0,0,0.10),
-    inset -3px 0 5px rgba(255,255,255,0.35);
-}
-
-/* RIGHT */
-.clickwheel.press-fw{
-  box-shadow:
-    inset -8px 0 10px rgba(0,0,0,0.10),
-    inset 3px 0 5px rgba(255,255,255,0.35);
-} 
+/* subtle tilt press — adds to base, never replaces */
+.clickwheel.press-menu { --press-shadow: inset 0 6px 10px rgba(0,0,0,0.05); }
+.clickwheel.press-play { --press-shadow: inset 0 -6px 10px rgba(0,0,0,0.05); }
+.clickwheel.press-rw   { --press-shadow: inset 6px 0 10px rgba(0,0,0,0.05); }
+.clickwheel.press-fw   { --press-shadow: inset -6px 0 10px rgba(0,0,0,0.05); }
