@@ -169,46 +169,62 @@ body{
   opacity: 1;
 }
 
-/* TOP (MENU) — rim shadow only (clipped to top half) */
+/* TOP (MENU) — tilt: shadow top + tiny highlight bottom */
 .clickwheel.press-menu::after{
-  clip-path: inset(0 0 50% 0); /* only top half */
+  clip-path: inset(0 0 50% 0);
   background:
-    radial-gradient(circle at 50% 8%,
+    radial-gradient(circle at 50% 6%,
       rgba(0,0,0,0.18) 0%,
-      rgba(0,0,0,0.12) 28%,
-      transparent 65%
+      rgba(0,0,0,0.10) 35%,
+      transparent 70%
+    ),
+    radial-gradient(circle at 50% 96%,
+      rgba(255,255,255,0.18) 0%,
+      transparent 55%
     );
 }
 
-/* BOTTOM (PLAY) — rim shadow only (clipped to bottom half) */
+/* BOTTOM (PLAY) — tilt: shadow bottom + tiny highlight top */
 .clickwheel.press-play::after{
-  clip-path: inset(50% 0 0 0); /* only bottom half */
+  clip-path: inset(50% 0 0 0);
   background:
-    radial-gradient(circle at 50% 92%,
+    radial-gradient(circle at 50% 94%,
       rgba(0,0,0,0.18) 0%,
-      rgba(0,0,0,0.12) 28%,
-      transparent 65%
+      rgba(0,0,0,0.10) 35%,
+      transparent 70%
+    ),
+    radial-gradient(circle at 50% 4%,
+      rgba(255,255,255,0.18) 0%,
+      transparent 55%
     );
 }
 
-/* LEFT (RW) — rim shadow only (clipped to left half) */
+/* LEFT (RW) — tilt: shadow left + tiny highlight right */
 .clickwheel.press-rw::after{
-  clip-path: inset(0 50% 0 0); /* only left half */
+  clip-path: inset(0 50% 0 0);
   background:
-    radial-gradient(circle at 8% 50%,
+    radial-gradient(circle at 6% 50%,
       rgba(0,0,0,0.18) 0%,
-      rgba(0,0,0,0.12) 28%,
-      transparent 65%
+      rgba(0,0,0,0.10) 35%,
+      transparent 70%
+    ),
+    radial-gradient(circle at 96% 50%,
+      rgba(255,255,255,0.18) 0%,
+      transparent 55%
     );
 }
 
-/* RIGHT (FW) — rim shadow only (clipped to right half) */
+/* RIGHT (FW) — tilt: shadow right + tiny highlight left */
 .clickwheel.press-fw::after{
-  clip-path: inset(0 0 0 50%); /* only right half */
+  clip-path: inset(0 0 0 50%);
   background:
-    radial-gradient(circle at 92% 50%,
+    radial-gradient(circle at 94% 50%,
       rgba(0,0,0,0.18) 0%,
-      rgba(0,0,0,0.12) 28%,
-      transparent 65%
+      rgba(0,0,0,0.10) 35%,
+      transparent 70%
+    ),
+    radial-gradient(circle at 4% 50%,
+      rgba(255,255,255,0.18) 0%,
+      transparent 55%
     );
 }
