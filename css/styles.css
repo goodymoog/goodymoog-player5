@@ -169,58 +169,42 @@ body{
   opacity: 1;
 }
 
-/* TOP (MENU) — thin arc at top rim */
+/* TOP (MENU) — rim shadow only */
 .clickwheel.press-menu::after{
   background:
-    conic-gradient(from -90deg,
-      rgba(0,0,0,0.22) 0deg 10deg,
-      transparent 10deg 350deg,
-      rgba(0,0,0,0.22) 350deg 360deg
-    ),
-    radial-gradient(circle at 50% 18%,
-      rgba(0,0,0,0.14),
+    radial-gradient(circle at 50% 8%,
+      rgba(0,0,0,0.20) 0%,
+      rgba(0,0,0,0.14) 25%,
       transparent 60%
     );
 }
 
-/* BOTTOM (PLAY) — thin arc at bottom rim */
+/* BOTTOM (PLAY) — rim shadow only */
 .clickwheel.press-play::after{
   background:
-    conic-gradient(from 90deg,
-      rgba(0,0,0,0.22) 0deg 10deg,
-      transparent 10deg 350deg,
-      rgba(0,0,0,0.22) 350deg 360deg
-    ),
-    radial-gradient(circle at 50% 82%,
-      rgba(0,0,0,0.14),
+    radial-gradient(circle at 50% 92%,
+      rgba(0,0,0,0.20) 0%,
+      rgba(0,0,0,0.14) 25%,
       transparent 60%
     );
 }
 
-/* LEFT (RW) — thin arc at left rim */
+/* LEFT (RW) — rim shadow only */
 .clickwheel.press-rw::after{
   background:
-    conic-gradient(from 180deg,
-      rgba(0,0,0,0.22) 0deg 10deg,
-      transparent 10deg 350deg,
-      rgba(0,0,0,0.22) 350deg 360deg
-    ),
-    radial-gradient(circle at 18% 50%,
-      rgba(0,0,0,0.14),
+    radial-gradient(circle at 8% 50%,
+      rgba(0,0,0,0.20) 0%,
+      rgba(0,0,0,0.14) 25%,
       transparent 60%
     );
 }
 
-/* RIGHT (FW) — thin arc at right rim */
+/* RIGHT (FW) — rim shadow only */
 .clickwheel.press-fw::after{
   background:
-    conic-gradient(from 0deg,
-      rgba(0,0,0,0.22) 0deg 10deg,
-      transparent 10deg 350deg,
-      rgba(0,0,0,0.22) 350deg 360deg
-    ),
-    radial-gradient(circle at 82% 50%,
-      rgba(0,0,0,0.14),
+    radial-gradient(circle at 92% 50%,
+      rgba(0,0,0,0.20) 0%,
+      rgba(0,0,0,0.14) 25%,
       transparent 60%
     );
 }
