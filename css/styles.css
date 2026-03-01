@@ -172,12 +172,11 @@ body{
 /* TOP (MENU) — thin arc at top rim */
 .clickwheel.press-menu::after{
   background:
-    /* dark rim arc */
     conic-gradient(from -90deg,
-      rgba(0,0,0,0.22) 350deg 10deg,
-      transparent 10deg 350deg
+      rgba(0,0,0,0.22) 0deg 10deg,
+      transparent 10deg 350deg,
+      rgba(0,0,0,0.22) 350deg 360deg
     ),
-    /* soften inward fade so it's not harsh */
     radial-gradient(circle at 50% 18%,
       rgba(0,0,0,0.14),
       transparent 60%
@@ -188,8 +187,9 @@ body{
 .clickwheel.press-play::after{
   background:
     conic-gradient(from 90deg,
-      rgba(0,0,0,0.22) 350deg 10deg,
-      transparent 10deg 350deg
+      rgba(0,0,0,0.22) 0deg 10deg,
+      transparent 10deg 350deg,
+      rgba(0,0,0,0.22) 350deg 360deg
     ),
     radial-gradient(circle at 50% 82%,
       rgba(0,0,0,0.14),
@@ -201,8 +201,9 @@ body{
 .clickwheel.press-rw::after{
   background:
     conic-gradient(from 180deg,
-      rgba(0,0,0,0.22) 350deg 10deg,
-      transparent 10deg 350deg
+      rgba(0,0,0,0.22) 0deg 10deg,
+      transparent 10deg 350deg,
+      rgba(0,0,0,0.22) 350deg 360deg
     ),
     radial-gradient(circle at 18% 50%,
       rgba(0,0,0,0.14),
@@ -214,8 +215,9 @@ body{
 .clickwheel.press-fw::after{
   background:
     conic-gradient(from 0deg,
-      rgba(0,0,0,0.22) 350deg 10deg,
-      transparent 10deg 350deg
+      rgba(0,0,0,0.22) 0deg 10deg,
+      transparent 10deg 350deg,
+      rgba(0,0,0,0.22) 350deg 360deg
     ),
     radial-gradient(circle at 82% 50%,
       rgba(0,0,0,0.14),
