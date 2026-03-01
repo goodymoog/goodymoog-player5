@@ -132,75 +132,73 @@ body{
 }
 
 /* ================================
-   REALISTIC CLICKWHEEL PRESS FX
+   CLICKWHEEL PRESS FX (QUADRANT TILT)
    ================================ */
 
-.clickwheel {
+* { -webkit-tap-highlight-color: transparent; }
+
+.clickwheel{
   position: relative;
-  transition: box-shadow 120ms ease, background 120ms ease;
-}
-
-/* Base wheel shading (unchanged look) */
-.clickwheel {
+  overflow: hidden;
+  transition: background 120ms ease, box-shadow 120ms ease;
   background: radial-gradient(circle at 40% 40%, #f8f8f8, #d0d0d0);
+  box-shadow: inset 0 6px 8px rgba(0,0,0,.1), inset 0 -4px 6px rgba(255,255,255,.4);
 }
 
-/* --- MENU (TOP) PRESS --- */
-.clickwheel.press-menu {
-  background:
-    conic-gradient(
-      from 0deg,
-      rgba(0,0,0,0.18) 340deg 20deg,
-      transparent 20deg 340deg
-    ),
-    radial-gradient(circle at 40% 40%, #f8f8f8, #d0d0d0);
-
+/* A helper: pressed state makes wheel feel “depressed” */
+.clickwheel.press-menu,
+.clickwheel.press-play,
+.clickwheel.press-rw,
+.clickwheel.press-fw{
   box-shadow:
-    inset 0 10px 16px rgba(0,0,0,0.18),
-    inset 0 -6px 12px rgba(255,255,255,0.5);
+    inset 0 10px 16px rgba(0,0,0,0.16),
+    inset 0 -8px 14px rgba(255,255,255,0.55);
 }
 
-/* --- PLAY (BOTTOM) PRESS --- */
-.clickwheel.press-play {
+/* TOP (MENU): dark wedge at top, slight bright opposite */
+.clickwheel.press-menu{
   background:
-    conic-gradient(
-      from 180deg,
-      rgba(0,0,0,0.18) 340deg 20deg,
-      transparent 20deg 340deg
+    conic-gradient(from -90deg,
+      rgba(0,0,0,0.20) 330deg 30deg,
+      transparent 30deg 330deg
     ),
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,0.35), transparent 55%),
+    radial-gradient(circle at 50% 80%, rgba(0,0,0,0.08), transparent 60%),
     radial-gradient(circle at 40% 40%, #f8f8f8, #d0d0d0);
-
-  box-shadow:
-    inset 0 -10px 16px rgba(0,0,0,0.18),
-    inset 0 6px 12px rgba(255,255,255,0.5);
 }
 
-/* --- LEFT PRESS --- */
-.clickwheel.press-rw {
+/* BOTTOM (PLAY) */
+.clickwheel.press-play{
   background:
-    conic-gradient(
-      from 270deg,
-      rgba(0,0,0,0.18) 340deg 20deg,
-      transparent 20deg 340deg
+    conic-gradient(from 90deg,
+      rgba(0,0,0,0.20) 330deg 30deg,
+      transparent 30deg 330deg
     ),
+    radial-gradient(circle at 50% 80%, rgba(255,255,255,0.35), transparent 55%),
+    radial-gradient(circle at 50% 20%, rgba(0,0,0,0.08), transparent 60%),
     radial-gradient(circle at 40% 40%, #f8f8f8, #d0d0d0);
-
-  box-shadow:
-    inset -10px 0 16px rgba(0,0,0,0.18),
-    inset 6px 0 12px rgba(255,255,255,0.5);
 }
 
-/* --- RIGHT PRESS --- */
-.clickwheel.press-fw {
+/* LEFT (RW) */
+.clickwheel.press-rw{
   background:
-    conic-gradient(
-      from 90deg,
-      rgba(0,0,0,0.18) 340deg 20deg,
-      transparent 20deg 340deg
+    conic-gradient(from 180deg,
+      rgba(0,0,0,0.20) 330deg 30deg,
+      transparent 30deg 330deg
     ),
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.35), transparent 55%),
+    radial-gradient(circle at 80% 50%, rgba(0,0,0,0.08), transparent 60%),
     radial-gradient(circle at 40% 40%, #f8f8f8, #d0d0d0);
+}
 
-  box-shadow:
-    inset 10px 0 16px rgba(0,0,0,0.18),
-    inset -6px 0 12px rgba(255,255,255,0.5);
+/* RIGHT (FW) */
+.clickwheel.press-fw{
+  background:
+    conic-gradient(from 0deg,
+      rgba(0,0,0,0.20) 330deg 30deg,
+      transparent 30deg 330deg
+    ),
+    radial-gradient(circle at 80% 50%, rgba(255,255,255,0.35), transparent 55%),
+    radial-gradient(circle at 20% 50%, rgba(0,0,0,0.08), transparent 60%),
+    radial-gradient(circle at 40% 40%, #f8f8f8, #d0d0d0);
 }

@@ -75,18 +75,28 @@ const hitPlay = document.querySelector('.hit-play');
 const wheel = document.querySelector('.clickwheel');
 
 function applyPress(cls) {
+  if (!wheel) return;
+
   wheel.classList.remove('press-menu','press-play','press-rw','press-fw');
   wheel.classList.add(cls);
 
-  setTimeout(() => {
+  clearTimeout(applyPress._t);
+  applyPress._t = setTimeout(() => {
     wheel.classList.remove(cls);
   }, 120);
 }
 
+// Trigger from hitboxes (mobile)
 hitMenu?.addEventListener('pointerdown', () => applyPress('press-menu'));
 hitPlay?.addEventListener('pointerdown', () => applyPress('press-play'));
 hitRW?.addEventListener('pointerdown', () => applyPress('press-rw'));
 hitFW?.addEventListener('pointerdown', () => applyPress('press-fw'));
+
+// ALSO trigger from visible labels/icons (desktop + mobile)
+btnMenu?.addEventListener('pointerdown', () => applyPress('press-menu'));
+btnPlay?.addEventListener('pointerdown', () => applyPress('press-play'));
+btnRW?.addEventListener('pointerdown', () => applyPress('press-rw'));
+btnFW?.addEventListener('pointerdown', () => applyPress('press-fw'));
 
 btnMenu.addEventListener('click', () => {
   secret.registerButton('menu');
