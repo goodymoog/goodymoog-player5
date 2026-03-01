@@ -59,17 +59,58 @@ body{
 .clickwheel { margin-top:40px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle at 40% 40%,#f8f8f8,#d0d0d0); box-shadow: inset 0 6px 8px rgba(0,0,0,.1), inset 0 -4px 6px rgba(255,255,255,.4); position:relative; z-index:2; }
 .center-btn { width:70px; height:70px; background:linear-gradient(to bottom,#e6e6e6,#cfcfcf); border-radius:50%; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); box-shadow: inset 0 2px 3px rgba(255,255,255,.5), inset 0 -2px 4px rgba(0,0,0,.1); cursor:pointer; z-index:5; }
 
-.btn-label { position:absolute; font-size:10px; color:#333; font-weight:bold; cursor:pointer; user-select:none; padding:10px; background:transparent; z-index:4; }
+/* Labels: keep visual only, don't steal clicks */
+.btn-label { position:absolute; font-size:10px; color:#333; font-weight:bold; cursor:pointer; user-select:none; padding:10px; background:transparent; z-index:4; pointer-events: none; }
 .btn-label.menu { top:10px; left:50%; transform:translateX(-50%); }
 .btn-label.rw { top:50%; left:10px; transform:translateY(-50%); }
 .btn-label.fw { top:50%; right:10px; transform:translateY(-50%); }
 .btn-label.play { bottom:10px; left:50%; transform:translateX(-50%); }
 
-.wheel-hit { position:absolute; inset:0; background:transparent; cursor:pointer; z-index:3; }
-.hit-menu { top:0; left:0; right:0; height:45%; }
-.hit-play { bottom:0; left:0; right:0; height:45%; }
-.hit-rw { top:22%; bottom:22%; left:0; width:38%; }
-.hit-fw { top:22%; bottom:22%; right:0; width:38%; }
+/* =========================
+   HIT ZONES (FIXED: NO OVERLAP)
+   ========================= */
+.wheel-hit {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  cursor: pointer;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+/* Make each zone a small rectangle inside its quadrant */
+
+/* TOP (MENU) */
+.hit-menu {
+  left: 25%;
+  top: 4%;
+  width: 50%;
+  height: 18%;
+}
+
+/* BOTTOM (PLAY/PAUSE) — was taking bottom 45% */
+.hit-play {
+  left: 35%;
+  bottom: 4%;
+  width: 30%;
+  height: 18%;
+}
+
+/* LEFT (RW) */
+.hit-rw {
+  left: 4%;
+  top: 35%;
+  width: 22%;
+  height: 30%;
+}
+
+/* RIGHT (FW) */
+.hit-fw {
+  right: 4%;
+  top: 35%;
+  width: 22%;
+  height: 30%;
+}
 
 /* Albums */
 .album-wrap { display:flex; align-items:center; justify-content:center; height:100%; padding:10px; }
@@ -87,7 +128,6 @@ body{
 .secret-splash { display:flex; align-items:center; justify-content:center; height:100%; flex-direction:column; gap:8px; }
 .secret-content { display:none; height:100%; align-items:center; justify-content:center; }
 
-
 @media (max-width:400px){ .ipod{ transform:scale(.85); } }
 
 @media (max-width: 480px){
@@ -95,4 +135,3 @@ body{
     padding-top: 20px; /* was 60px — adjust to taste */
   }
 }
-
